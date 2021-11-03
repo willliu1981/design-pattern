@@ -15,10 +15,9 @@ public class NoodleFactory implements IFactory {
 	@Override
 	public void produce(Item... items) {
 		Item product = recipe.produce(items);
-
-		System.out.printf("消耗...%s %d 個 和 %s %d 個 \n", items[0].getName(), items[0].getNumber(), items[1].getName(),
-				items[0].getNumber());
-		System.out.printf("生產了...%s %d 個 \n" , product.getName(),product.getNumber());
+		if (product == null) {
+			System.out.println("沒有任何生產");
+		}
 
 	}
 
