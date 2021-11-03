@@ -1,5 +1,10 @@
 package com.strategy.factory;
 
-public interface IFactory {
+import com.strategy.item.Item;
+import com.strategy.recipe.IRecipe;
 
+public interface IFactory {
+	void setRecipe(IRecipe recipe);
+	void produce(Item...items);
+	
 }
