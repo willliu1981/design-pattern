@@ -5,6 +5,15 @@ public class Item {
 	private int number;
 	private int id;
 
+	public Item() {
+
+	}
+
+	public Item(int id, int number) {
+		this.id = id;
+		this.number = number;
+	}
+
 	public String getName() {
 		return name;
 	}

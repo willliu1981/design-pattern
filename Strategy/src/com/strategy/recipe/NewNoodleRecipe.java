@@ -1,6 +1,7 @@
 package com.strategy.recipe;
 
 import com.strategy.item.Item;
+import com.strategy.recipe.consumer.RecipeConsumer;
 
 public class NewNoodleRecipe implements IRecipe {
 
@@ -10,29 +11,26 @@ public class NewNoodleRecipe implements IRecipe {
 		product.setName("麵");
 		product.setId(3);
 
-		if (items[0].getId() == 1 && items[1].getId() == 2
-				&& items[2].getId() == 4) {
-			if (items[0].getNumber() >= 10 && items[1].getNumber() >= 20
-					&& items[2].getNumber() >= 1) {
-				items[0].setNumber(items[0].getNumber() - 10);
-				items[1].setNumber(items[1].getNumber() - 20);
-				items[2].setNumber(items[2].getNumber() - 1);
-				product.setNumber(20);
+		final int conNumber1 = 10;
+		final int conNumber2 = 20;
+		final int conNumber3 = 1;
 
-				System.out.printf("消耗...%s %d 個, %s %d 個 和 %s %d 個 \n",
-						items[0].getName(), 10, items[1].getName(), 20,
-						items[2].getName(), 1);
-				System.out.printf("生產了...%s %d 個 \n", product.getName(),
-						product.getNumber());
-				System.out.printf("%s 還剩 %d 個, %s 還剩 %d 個, %s 還剩 %d 個 \n",
-						items[0].getName(), items[0].getNumber(),
-						items[1].getName(), items[1].getNumber(),
-						items[2].getName(), items[2].getNumber());
+		RecipeConsumer consumer = new RecipeConsumer(1, conNumber1, 2,
+				conNumber2, 4, conNumber3);
 
-			} else {
-				return null;
-			}
+		if (Recipes.judge(consumer, items)) {
+			Recipes.consume(consumer, items);
+			product.setNumber(25);
 
+			System.out.printf("消耗...%s %d 個, %s %d 個 和 %s %d 個 \n",
+					items[0].getName(), conNumber1, items[1].getName(),
+					conNumber2, items[2].getName(), conNumber3);
+			System.out.printf("生產了...%s %d 個 \n", product.getName(),
+					product.getNumber());
+			System.out.printf("%s 還剩 %d 個, %s 還剩 %d 個, %s 還剩 %d 個 \n",
+					items[0].getName(), items[0].getNumber(),
+					items[1].getName(), items[1].getNumber(),
+					items[2].getName(), items[2].getNumber());
 		} else {
 			return null;
 		}
