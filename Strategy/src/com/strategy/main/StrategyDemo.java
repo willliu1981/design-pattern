@@ -1,7 +1,13 @@
 package com.strategy.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.strategy.factory.CarFactory;
 import com.strategy.factory.NoodleFactory;
 import com.strategy.item.Item;
+import com.strategy.item.defaultitems.DefaultItem;
+import com.strategy.recipe.CarRecipe;
 import com.strategy.recipe.NewNoodleRecipe;
 import com.strategy.recipe.NoodleRecipe;
 
@@ -37,6 +43,20 @@ public class StrategyDemo {
 		System.out.println("\n更改配方後...");
 		factory.setRecipe(new NewNoodleRecipe());
 		factory.produce(flour, water, salt);
+
+		System.out.println("\n生產汽車...");
+		CarFactory carFactory = new CarFactory();
+		carFactory.setRecipe(new CarRecipe());
+		List<Item> lstCarProjuctStove = new ArrayList<>();
+		lstCarProjuctStove.add(DefaultItem.getNewItem(10, 100));
+		lstCarProjuctStove.add(DefaultItem.getNewItem(11, 200));
+		lstCarProjuctStove.add(DefaultItem.getNewItem(12, 50));
+		lstCarProjuctStove.add(DefaultItem.getNewItem(13, 10));
+		List<Item> lstCarProduce = carFactory
+				.produce(lstCarProjuctStove.stream().toArray(Item[]::new));
+		System.out.println();
+		lstCarProjuctStove.stream().forEach(x -> System.out.printf("庫存: %s %d 個, ",
+				x.getName(), x.getNumber()));
 
 	}
 }

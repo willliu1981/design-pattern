@@ -1,4 +1,4 @@
-package com.strategy.recipe.consumer;
+package com.strategy.recipe.tool.consumer;
 
 import java.util.ArrayList;
 import java.util.List;

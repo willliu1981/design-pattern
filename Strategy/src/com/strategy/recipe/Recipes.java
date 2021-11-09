@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.junit.Test;
 
 import com.strategy.item.Item;
-import com.strategy.recipe.consumer.RecipeConsumer;
+import com.strategy.recipe.tool.consumer.RecipeConsumer;
 
 public class Recipes {
 

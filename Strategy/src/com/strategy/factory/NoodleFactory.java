@@ -1,5 +1,8 @@
 package com.strategy.factory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.strategy.item.Item;
 import com.strategy.recipe.IRecipe;
 
@@ -13,12 +16,12 @@ public class NoodleFactory implements IFactory {
 	}
 
 	@Override
-	public void produce(Item... items) {
-		Item product = recipe.produce(items);
-		if (product == null) {
+	public List<Item> produce(Item... items) {
+		List<Item> lstProduct = recipe.produce(items);
+		if (lstProduct == null) {
 			System.out.println("沒有任何生產");
 		}
-
+		return lstProduct;
 	}
 
 }

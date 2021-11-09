@@ -1,7 +1,9 @@
 package com.strategy.recipe;
 
+import java.util.List;
+
 import com.strategy.item.Item;
 
 public interface IRecipe {
-	Item produce(Item... items);
+	List<Item> produce(Item... items);
 }

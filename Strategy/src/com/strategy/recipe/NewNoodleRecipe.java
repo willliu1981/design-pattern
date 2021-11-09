@@ -1,12 +1,16 @@
 package com.strategy.recipe;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.strategy.item.Item;
-import com.strategy.recipe.consumer.RecipeConsumer;
+import com.strategy.recipe.tool.consumer.RecipeConsumer;
 
 public class NewNoodleRecipe implements IRecipe {
 
 	@Override
-	public Item produce(Item... items) {
+	public List<Item> produce(Item... items) {
+		List<Item> lstProduct=new ArrayList<>();
 		Item product = new Item();
 		product.setName("麵");
 		product.setId(3);
@@ -35,7 +39,8 @@ public class NewNoodleRecipe implements IRecipe {
 			return null;
 		}
 
-		return product;
+		lstProduct.add(product);
+		return lstProduct;
 	}
 
 }
