@@ -11,7 +11,7 @@ public class DefaultItem {
 	static {
 		items.add(new Item(1, "麵粉"));
 		items.add(new Item(2, "水"));
-		items.add(new Item(3, "麵條"));
+		items.add(new Item(3, "生麵條"));
 		items.add(new Item(4, "鹽"));
 		items.add(new Item(10, "輪胎"));
 		items.add(new Item(11, "汽車外殼"));

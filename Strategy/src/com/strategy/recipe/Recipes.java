@@ -1,42 +1,67 @@
 package com.strategy.recipe;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.Test;
 
 import com.strategy.item.Item;
+import com.strategy.main.tool.ProduceDetail;
 import com.strategy.recipe.tool.consumer.RecipeConsumer;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+import com.sun.xml.internal.txw2.output.StreamSerializer;
 
 public class Recipes {
 
-	public static boolean judge(RecipeConsumer consumer, Item... items) {
-		for (Item item : items) {
-			Optional<Item> op = consumer.getConsumers().stream()
-					.filter(x -> x.getId() == item.getId()).findAny();
-			if (!findConsumer(consumer, item).isPresent()) {
+	public static boolean judge(RecipeConsumer consumer, Item... inputs) {
+		for (Item consumerItem : consumer.getConsumers()) {
+			Optional<Item> opFind = findItemFromItems(consumerItem, inputs);
+			if (!opFind.isPresent()) {
 				return false;
 			}
 
-			if (item.getNumber() < op.get().getNumber()) {
+			if (consumerItem.getNumber() > opFind.get().getNumber()) {
 				return false;
 			}
-
 		}
 
 		return true;
 	}
 
 	public static void consume(RecipeConsumer consumer, Item... items) {
-		for (Item item : items) {
-			item.setNumber(item.getNumber()
-					- findConsumer(consumer, item).get().getNumber());
+		for (Item item : consumer.getConsumers()) {
+			Item opFind = findItemFromItems(item, items).get();
+			opFind.setNumber(opFind.getNumber() - item.getNumber());
 		}
 	}
 
-	private static Optional<Item> findConsumer(RecipeConsumer consumer,
-			Item item) {
-		return consumer.getConsumers().stream()
+	public static void add(List<Item> oldItems, List<Item> newItems) {
+		for (Item item : newItems) {
+			Item opFind = findItemFromItems(item,
+					oldItems.stream().toArray(Item[]::new)).get();
+			opFind.setNumber(opFind.getNumber() + item.getNumber());
+		}
+	}
+
+	private static Optional<Item> findItemFromItems(Item item,
+
+			Item... items) {
+
+		return Arrays.asList(items).stream()
 				.filter(x -> x.getId() == item.getId()).findAny();
+	}
+
+	public static void produceDetial(List<Item> products, Item... consumers) {
+		System.out.printf("消耗...%s\n生產了...%s",
+				ProduceDetail.quantityDetail(consumers),
+				ProduceDetail.quantityDetail(
+						products.stream().toArray(Item[]::new)));
+	}
+
+	public static void produceDetial(List<Item> products,
+			List<Item> consumers) {
+		produceDetial(products, consumers.stream().toArray(Item[]::new));
 	}
 
 	@Test

@@ -1,6 +1,7 @@
 package com.strategy.recipe;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,27 +19,23 @@ public class CarRecipe implements IRecipe {
 				DefaultItem.getNewItem(11, 1), DefaultItem.getNewItem(12, 1),
 				DefaultItem.getNewItem(13, 1));
 
-		List<Item> product = new ArrayList<>();
+		List<Item> lstProduct = new ArrayList<>();
 
 		if (Recipes.judge(consumer, items)) {
 			Recipes.consume(consumer, items);
-			product.add(DefaultItem.getNewItem(14, 1));
-			produceDetial(product,
+			lstProduct.add(DefaultItem.getNewItem(14, 1));
+			
+			Recipes.add(Arrays.asList(items), lstProduct);
+			
+			produceDetial(lstProduct,
 					consumer.getConsumers().stream().toArray(Item[]::new));
 		}
 
-		return product;
+		return lstProduct;
 	}
 
 	private void produceDetial(List<Item> products, Item... consumes) {
-		for (Item item : consumes) {
-			System.out.printf("消耗...%s %d 個, ", item.getName(),
-					item.getNumber());
-		}
-
-		System.out.println();
-		products.stream().forEach(x -> System.out.printf("生產了...%s %d 個, ",
-				x.getName(), x.getNumber()));
+		Recipes.produceDetial(products, consumes);
 
 	}
 
