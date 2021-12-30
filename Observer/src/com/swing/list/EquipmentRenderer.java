@@ -21,7 +21,7 @@ public class EquipmentRenderer implements ListCellRenderer<Equipment> {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 		panel.setBorder(new LineBorder(new Color(0, 128, 0)));
-		
+
 		JLabel lblTitle = new JLabel(value.getClass().getSimpleName());
 		lblTitle.setForeground(Color.blue);
 		panel.add(lblTitle, BorderLayout.NORTH);

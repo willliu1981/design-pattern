@@ -1,9 +1,9 @@
-package com.test2;
+package com.test.test2;
 
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
-import com.test2.ProductV2.State;
+import com.test.test2.ProductV2.State;
 
 public class Demo2 {
 	public static void main(String[] ss) {

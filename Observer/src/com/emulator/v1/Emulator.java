@@ -11,7 +11,8 @@ import javax.swing.border.EmptyBorder;
 import com.emulator.v1.resource.equipment.MiningMachine;
 import com.emulator.v1.resource.equipment.ProcessingMachine;
 import com.swing.list.EquipmentRenderer;
-import com.test.MyModel;
+import com.test.test1.MyModel;
+
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 

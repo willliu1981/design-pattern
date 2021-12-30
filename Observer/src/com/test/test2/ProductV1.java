@@ -1,4 +1,4 @@
-package com.test2;
+package com.test.test2;
 
 public class ProductV1 {
 	private String p_name;

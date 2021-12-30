@@ -1,9 +1,9 @@
-package com.test2;
+package com.test.test2;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.test2.ProductV2.State;
+import com.test.test2.ProductV2.State;
 
 public class ProductV2 {
 	public static class State {
