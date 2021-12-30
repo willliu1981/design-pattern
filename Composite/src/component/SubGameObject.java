@@ -3,11 +3,11 @@ package component;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameObject extends Component {
+public class SubGameObject extends Component {
 
 	private List<Component> components = new ArrayList<>();
 
-	public GameObject(String name, String des) {
+	public SubGameObject(String name, String des) {
 		super(name, des);
 	}
 
@@ -24,7 +24,7 @@ public class GameObject extends Component {
 	@Override
 	public void print() {
 		System.out.println(
-				"##===================" + getName() + "======================");
+				"####===================" + getName() + "======================");
 		System.out.println("description:" + this.getDescription());
 		components.forEach(x -> {
 			x.print();
